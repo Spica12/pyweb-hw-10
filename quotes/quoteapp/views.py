@@ -57,7 +57,7 @@ def author(request):
     return render(request, 'quoteapp/author.html', {'form': AuthorForm()})
 
 
-def detail(request, author_id):
-    author = get_object_or_404(Author, pk=author_id)
+def detail(request, author_fullanme):
+    author = get_object_or_404(Author, fullname=author_fullanme)
 
     return render(request, "quoteapp/detail.html", {"author": author})

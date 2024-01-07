@@ -19,7 +19,8 @@
       >
         {% if user.is_authenticated %}
         <ul>
-          <li><a href="{% url 'quoteapp:quote' %}" role="button">Add note</a></li>
+          <li><a href="{% url 'quoteapp:quote' %}" role="button">Add Quote</a></li>
+          <li><a href="{% url 'quoteapp:author' %}" role="button">Add Author</a></li>
           <li><a href="{% url 'quoteapp:tag' %}" role="button">Add Tag</a></li>
         </ul>
         <ul>

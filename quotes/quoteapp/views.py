@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import TagForm, QuoteForm
+from .forms import TagForm, QuoteForm, AuthorForm
 from .models import Tag, Quote
 
 
@@ -37,3 +37,15 @@ def quote(request):
             return render(request, 'quoteapp/quote.html', {"tags": tags, 'form': form})
 
     return render(request, 'quoteapp/quote.html', {"tags": tags, 'form': QuoteForm()})
+
+
+def author(request):
+    if request.method == 'POST':
+        form = AuthorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to='quoteapp:main')
+        else:
+            return render(request, 'quoteapp/author.html', {'form': form})
+
+    return render(request, 'quoteapp/author.html', {'form': AuthorForm()})

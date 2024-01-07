@@ -26,3 +26,13 @@ class Quote(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+
+class Author(models.Model):
+    fullname = models.CharField(max_length=25, null=False)
+    born_date = models.DateField(auto_now_add=False)
+    born_location = models.CharField(max_length=100, null=False)
+    description = models.CharField(max_length=500, null=False)
+
+    def __str__(self):
+        return f"{self.name}"

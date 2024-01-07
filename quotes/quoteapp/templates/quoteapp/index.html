@@ -19,7 +19,7 @@
       >
         {% if user.is_authenticated %}
         <ul>
-          <li><a href="{% url 'quoteapp:note' %}" role="button">Add note</a></li>
+          <li><a href="{% url 'quoteapp:quote' %}" role="button">Add note</a></li>
           <li><a href="{% url 'quoteapp:tag' %}" role="button">Add Tag</a></li>
         </ul>
         <ul>
@@ -34,10 +34,10 @@
         </ul>
         {% endif %}
       </nav>
-      {% for note in notes %}
+      {% for quote in quotes %}
     <ul>
       <li>
-        {% if not note.done %}
+        {% if not quote.done %}
         <a
           href="{% url 'quoteapp:detail' note.id %}"
           role="button"

@@ -1,4 +1,4 @@
-from django.forms import ModelForm, CharField, DateField, TextInput, DateInput
+from django.forms import ModelForm, ModelChoiceField, CharField, DateField, TextInput, DateInput
 from .models import Tag, Quote, Author
 
 
@@ -14,7 +14,7 @@ class TagForm(ModelForm):
 class QuoteForm(ModelForm):
 
     quote = CharField(min_length=10, max_length=150, required=True, widget=TextInput())
-    author = CharField(min_length=5, max_length=50, required=True, widget=TextInput())
+    author = ModelChoiceField(queryset=Author.objects.all(), required=True, widget=TextInput())
 
     class Meta:
         model = Quote

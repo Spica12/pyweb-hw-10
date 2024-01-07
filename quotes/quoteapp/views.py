@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import TagForm, QuoteForm, AuthorForm
-from .models import Tag, Quote
+from .models import Tag, Quote, Author
 
 
 # Create your views here.
@@ -22,11 +22,15 @@ def tag(request):
 
 def quote(request):
     tags = Tag.objects.all()
+    authors = Author.objects.all()
 
     if request.method == 'POST':
         form = QuoteForm(request.POST)
         if form.is_valid():
             new_quote = form.save()
+
+            author = Author.objects.filter(id=request.POST['author']).first()
+            new_quote.author = author
 
             choice_tags = Tag.objects.filter(name__in=request.POST.getlist('tags'))
             for tag in choice_tags.iterator():
@@ -34,9 +38,10 @@ def quote(request):
 
             return redirect(to='quoteapp:main')
         else:
-            return render(request, 'quoteapp/quote.html', {"tags": tags, 'form': form})
 
-    return render(request, 'quoteapp/quote.html', {"tags": tags, 'form': QuoteForm()})
+            return render(request, 'quoteapp/quote.html', {"authors": authors, 'tags': tags,'form': form})
+
+    return render(request, 'quoteapp/quote.html', {"authors": authors, 'tags': tags, 'form': QuoteForm()})
 
 
 def author(request):

@@ -5,7 +5,8 @@ from .models import Tag, Quote, Author
 
 # Create your views here.
 def main(request):
-    return render(request, 'quoteapp/index.html')
+    quotes = Quote.objects.all()
+    return render(request, 'quoteapp/index.html', {'quotes': quotes})
 
 
 def tag(request):
@@ -54,3 +55,5 @@ def author(request):
             return render(request, 'quoteapp/author.html', {'form': form})
 
     return render(request, 'quoteapp/author.html', {'form': AuthorForm()})
+
+

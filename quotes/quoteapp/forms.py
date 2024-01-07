@@ -1,4 +1,4 @@
-from django.forms import ModelForm, ModelChoiceField, CharField, DateField, TextInput, DateInput
+from django.forms import ModelForm, ModelChoiceField, CharField, Textarea, DateField, TextInput, DateInput
 from .models import Tag, Quote, Author
 
 
@@ -27,7 +27,7 @@ class AuthorForm(ModelForm):
     fullname = CharField(min_length=10, max_length=150, required=True, widget=TextInput())
     born_date = DateField(required=True, widget=DateInput(attrs={'type': 'date'}))
     born_location = CharField(min_length=5, max_length=50, required=True, widget=TextInput())
-    description = CharField(min_length=5, max_length=50, required=True, widget=TextInput())
+    description = CharField(required=True, widget=Textarea())
 
 
     class Meta:

@@ -20,7 +20,7 @@ class Author(models.Model):
     fullname = models.CharField(max_length=25, null=False)
     born_date = models.DateField(null=True)
     born_location = models.CharField(max_length=100, null=True)
-    description = models.CharField(max_length=500, null=True)
+    description = models.CharField(null=True)
 
     def __str__(self):
         return f"{self.fullname}"

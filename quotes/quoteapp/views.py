@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import TagForm, QuoteForm, AuthorForm
 from .models import Tag, Quote, Author
 
@@ -57,3 +57,7 @@ def author(request):
     return render(request, 'quoteapp/author.html', {'form': AuthorForm()})
 
 
+def detail(request, author_id):
+    author = get_object_or_404(Author, pk=author_id)
+
+    return render(request, "quoteapp/detail.html", {"author": author})

@@ -20,8 +20,12 @@
       >
         {% if user.is_authenticated %}
         <ul>
-          <li><a href="{% url 'quoteapp:quote' %}" role="button">Add Quote</a></li>
-          <li><a href="{% url 'quoteapp:author' %}" role="button">Add Author</a></li>
+          <li>
+            <a href="{% url 'quoteapp:quote' %}" role="button">Add Quote</a>
+          </li>
+          <li>
+            <a href="{% url 'quoteapp:author' %}" role="button">Add Author</a>
+          </li>
           <li><a href="{% url 'quoteapp:tag' %}" role="button">Add Tag</a></li>
         </ul>
         <ul>
@@ -37,14 +41,20 @@
         {% endif %}
       </nav>
       {% for quote in quotes %}
-    <ul>
-      <li>
-        <p>{{ quote.quote }}</p>
-        <p>by {{ quote.author }}</p>
-        <p>Tags: <small> {{ quote.tags|tags }} </small></p>
-      </li>
-    </ul>
-    {% endfor %}
+      <ul>
+        <li>
+          <p>{{ quote.quote }}</p>
+          <p>
+            by <b>{{quote.author}}</b>
+            <a
+              href="{% url 'quoteapp:detail' quote.author.id %}"
+              >(about)</a
+            >
+          </p>
+          <p>Tags: <small> {{ quote.tags|tags }} </small></p>
+        </li>
+      </ul>
+      {% endfor %}
     </main>
   </body>
 </html>

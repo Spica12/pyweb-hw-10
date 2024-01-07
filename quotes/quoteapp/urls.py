@@ -6,6 +6,7 @@ app_name = 'quoteapp'
 urlpatterns = [
     path('', views.main, name='main'),
     path('tag/', views.tag, name='tag'),
-    path('quote/',views.quote, name='quote'),
-    path('author/',views.author, name='author'),
+    path('quote/', views.quote, name='quote'),
+    path('author/', views.author, name='author'),
+    path('detail/<int:author_id>', views.detail, name='detail'),
 ]

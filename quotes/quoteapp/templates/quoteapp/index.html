@@ -40,6 +40,24 @@
         </ul>
         {% endif %}
       </nav>
+      <nav>
+        {% if user.is_authenticated %}
+        <ul>
+          <li><a href="{% url 'quoteapp:delete_all_quotes' %}" role="button">Delete all Quotes</a></li>
+          <li><a href="{% url 'quoteapp:delete_all_authors' %}" role="button">Delete all Authors</a></li>
+          <li><a href="{% url 'quoteapp:delete_all_tags' %}" role="button">Delete all Tags</a></li>
+        </ul>
+        {% endif %}
+      </nav>
+      <nav>
+        {% if user.is_authenticated %}
+        <ul>
+          <li><a href="{% url 'quoteapp:seed_quotes' %}" role="button">Add test Quotes</a></li>
+          <li><a href="{% url 'quoteapp:seed_authors' %}" role="button">Add test Authors</a></li>
+        </ul>
+        {% endif %}
+      </nav>
+
       {% for quote in quotes %}
       <ul>
         <li>

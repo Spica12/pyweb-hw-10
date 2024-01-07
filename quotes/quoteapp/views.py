@@ -61,3 +61,27 @@ def detail(request, author_fullanme):
     author = get_object_or_404(Author, fullname=author_fullanme)
 
     return render(request, "quoteapp/detail.html", {"author": author})
+
+
+def delete_all_quotes(request):
+    quotes = Quote.objects.all()
+    for quote in quotes:
+        quote.delete()
+
+    return redirect(to='quoteapp:main')
+
+
+def delete_all_authors(request):
+    authors = Author.objects.all()
+    for author in authors:
+        author.delete()
+
+    return redirect(to='quoteapp:main')
+
+
+def delete_all_tags(request):
+    tags = Tag.objects.all()
+    for tag in tags:
+        tag.delete()
+
+    return redirect(to='quoteapp:main')

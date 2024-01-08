@@ -85,3 +85,17 @@ def delete_all_tags(request):
         tag.delete()
 
     return redirect(to='quoteapp:main')
+
+def find_quotes_by_tag(request, tag):
+    tag = Tag.objects.filter(name=tag).first()
+    # quotes = []
+    # all_quotes = Quote.objects.all()
+
+    # for quote in all_quotes.iterator():
+    #     tags = [str(tag) for tag in quote.tags.iterator()]
+    #     if tag.name in tags:
+    #         quotes.append(quote)
+
+    quotes = Quote.objects.filter(tags=tag.id).all()
+
+    return render(request, 'quoteapp/quotes.html', {'quotes': quotes})

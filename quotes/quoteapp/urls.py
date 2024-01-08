@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from . import seed
+from . import seed_mongo
 
 app_name = 'quoteapp'
 
@@ -15,4 +16,7 @@ urlpatterns = [
     path('delete_all_tags/', views.delete_all_tags, name='delete_all_tags'),
     path('seed_authors/', seed.seed_authors, name='seed_authors'),
     path('seed_quotes/', seed.seed_quotes, name='seed_quotes'),
+    path('seed_authors_mongo/', seed_mongo.seed_authors, name='seed_authors_mongo'),
+    path('seed_quotes_mongo/', seed_mongo.seed_quotes, name='seed_quotes_mongo'),
+
 ]

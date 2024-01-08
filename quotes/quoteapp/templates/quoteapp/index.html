@@ -52,11 +52,14 @@
       <nav>
         {% if user.is_authenticated %}
         <ul>
-          <li><a href="{% url 'quoteapp:seed_quotes' %}" role="button">Add test Quotes</a></li>
-          <li><a href="{% url 'quoteapp:seed_authors' %}" role="button">Add test Authors</a></li>
+          <li><a href="{% url 'quoteapp:seed_quotes' %}" role="button">Add test Quotes (JSON-file)</a></li>
+          <li><a href="{% url 'quoteapp:seed_authors' %}" role="button">Add test Authors (JSON-file)</a></li>
+          <li><a href="{% url 'quoteapp:seed_quotes_mongo' %}" role="button">Add test Quotes (MongoDB)</a></li>
+          <li><a href="{% url 'quoteapp:seed_authors_mongo' %}" role="button">Add test Authors (MongoDB)</a></li>
         </ul>
         {% endif %}
       </nav>
+
 
       {% for quote in quotes %}
       <ul>

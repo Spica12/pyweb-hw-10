@@ -40,26 +40,63 @@
         </ul>
         {% endif %}
       </nav>
+      <p>Ten most common Tags:</p>
+      <ul>
+        {% for tag in most_common_tags %}
+        <li>
+          <a href="{% url 'quoteapp:find_quotes_by_tag' tag.name %}">
+            {{ tag.name }}</a
+          >
+        </li>
+        {% endfor %}
+      </ul>
       <nav>
         {% if user.is_authenticated %}
         <ul>
-          <li><a href="{% url 'quoteapp:delete_all_quotes' %}" role="button">Delete all Quotes</a></li>
-          <li><a href="{% url 'quoteapp:delete_all_authors' %}" role="button">Delete all Authors</a></li>
-          <li><a href="{% url 'quoteapp:delete_all_tags' %}" role="button">Delete all Tags</a></li>
+          <li>
+            <a href="{% url 'quoteapp:delete_all_quotes' %}" role="button"
+              >Delete all Quotes</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'quoteapp:delete_all_authors' %}" role="button"
+              >Delete all Authors</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'quoteapp:delete_all_tags' %}" role="button"
+              >Delete all Tags</a
+            >
+          </li>
         </ul>
         {% endif %}
       </nav>
       <nav>
         {% if user.is_authenticated %}
         <ul>
-          <li><a href="{% url 'quoteapp:seed_quotes' %}" role="button">Add test Quotes (JSON-file)</a></li>
-          <li><a href="{% url 'quoteapp:seed_authors' %}" role="button">Add test Authors (JSON-file)</a></li>
-          <li><a href="{% url 'quoteapp:seed_quotes_mongo' %}" role="button">Add test Quotes (MongoDB)</a></li>
-          <li><a href="{% url 'quoteapp:seed_authors_mongo' %}" role="button">Add test Authors (MongoDB)</a></li>
+          <li>
+            <a href="{% url 'quoteapp:seed_quotes' %}" role="button"
+              >Add test Quotes (JSON-file)</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'quoteapp:seed_authors' %}" role="button"
+              >Add test Authors (JSON-file)</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'quoteapp:seed_quotes_mongo' %}" role="button"
+              >Add test Quotes (MongoDB)</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'quoteapp:seed_authors_mongo' %}" role="button"
+              >Add test Authors (MongoDB)</a
+            >
+          </li>
         </ul>
         {% endif %}
       </nav>
-
 
       {% for quote in quotes %}
       <ul>
@@ -67,17 +104,19 @@
           <p>{{ quote.quote }}</p>
           <p>
             by <b>{{quote.author}}</b>
-            <a
-              href="{% url 'quoteapp:detail' quote.author.fullname %}"
+            <a href="{% url 'quoteapp:detail' quote.author.fullname %}"
               >(about)</a
             >
           </p>
-          <p>Tags:
+          <p>
+            Tags:
             <small>
               {% for tag in quote.tags|tags %}
-                <a href="{% url 'quoteapp:find_quotes_by_tag' tag.name %}"> {{ tag.name }}</a>,
-              {% endfor %}
-            </small></p>
+              <a href="{% url 'quoteapp:find_quotes_by_tag' tag.name %}">
+                {{ tag.name }}</a
+              >, {% endfor %}
+            </small>
+          </p>
         </li>
       </ul>
       {% endfor %}

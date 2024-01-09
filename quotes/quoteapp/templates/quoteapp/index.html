@@ -125,7 +125,24 @@
           </ul>
         </div>
       </div>
-
     </main>
+    <nav class="container">
+      <span class="step-links">
+
+        {% if quotes.has_previous %}
+        <a href="?page=1" role="button">&laquo; first</a>
+        <a href="?page={{ quotes.previous_page_number }}" role="button">previous</a>
+        {% endif %}
+
+        <span class="current">
+          Сторінка {{ quotes.number }} з {{ quotes.paginator.num_pages }}.
+        </span>
+
+        {% if quotes.has_next %}
+            <a href="?page={{ quotes.next_page_number }}" role="button">next</a>
+            <a href="?page={{ quotes.paginator.num_pages }}" role="button">last &raquo;</a>
+        {% endif %}
+      </span>
+    </nav>
   </body>
 </html>

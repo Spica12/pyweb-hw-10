@@ -3,6 +3,7 @@
 {% block content %}
 
 {% for quote in quotes %}
+<h3>Viewing tag: <a href="{% url 'quoteapp:find_quotes_by_tag' viewing_tag.name %}"> {{ viewing_tag.name}}</a></h3>
 <ul>
     <li>
         <p>{{ quote.quote }}</p>

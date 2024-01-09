@@ -16,7 +16,7 @@ def top_ten_tags():
 
     # print(counter_tags.most_common(10))
     most_common_tags = [tag for tag in dict(counter_tags.most_common(10))]
-    
+
     return most_common_tags
 
 
@@ -129,4 +129,4 @@ def find_quotes_by_tag(request, tag):
 
     quotes = Quote.objects.filter(tags=tag.id).all()
 
-    return render(request, "quoteapp/quotes.html", {"quotes": quotes})
+    return render(request, "quoteapp/quotes.html", {"quotes": quotes, 'viewing_tag': tag})

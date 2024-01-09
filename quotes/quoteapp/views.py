@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import TagForm, QuoteForm, AuthorForm
 from .models import Tag, Quote, Author
 import collections
@@ -21,7 +22,19 @@ def top_ten_tags():
 
 
 def main(request):
-    quotes = Quote.objects.all()
+    all_quotes = Quote.objects.all()
+    items_per_page = 10
+    paginator = Paginator(all_quotes, items_per_page)
+    page = request.GET.get('page')
+
+    try:
+        quotes = paginator.page(page)
+
+    except PageNotAnInteger:
+        quotes = paginator.page(1)
+
+    except EmptyPage:
+        quotes = paginator.page(paginator.num_pages)
 
     most_common_tags = top_ten_tags()
 

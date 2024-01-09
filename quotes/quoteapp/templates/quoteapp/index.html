@@ -10,12 +10,16 @@
   </head>
   <body>
     {% load extract_tags %}
-    <main class="container">
+    <main
+      class="container"
+      style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px"
+    >
       <nav
         style="
           margin-bottom: 20px;
           border-bottom: 2px solid;
           padding-left: 30px;
+          padding-right: 30px;
         "
       >
         {% if user.is_authenticated %}
@@ -40,39 +44,88 @@
         </ul>
         {% endif %}
       </nav>
+
       <nav>
         {% if user.is_authenticated %}
         <ul>
-          <li><a href="{% url 'quoteapp:delete_all_quotes' %}" role="button">Delete all Quotes</a></li>
-          <li><a href="{% url 'quoteapp:delete_all_authors' %}" role="button">Delete all Authors</a></li>
-          <li><a href="{% url 'quoteapp:delete_all_tags' %}" role="button">Delete all Tags</a></li>
-        </ul>
-        {% endif %}
-      </nav>
-      <nav>
-        {% if user.is_authenticated %}
-        <ul>
-          <li><a href="{% url 'quoteapp:seed_quotes' %}" role="button">Add test Quotes</a></li>
-          <li><a href="{% url 'quoteapp:seed_authors' %}" role="button">Add test Authors</a></li>
+          <li>
+            <a href="{% url 'quoteapp:delete_all_quotes' %}" role="button"
+              >Delete all Quotes</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'quoteapp:delete_all_authors' %}" role="button"
+              >Delete all Authors</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'quoteapp:delete_all_tags' %}" role="button"
+              >Delete all Tags</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'quoteapp:seed_quotes' %}" role="button"
+              >Add test Quotes (JSON-file)</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'quoteapp:seed_authors' %}" role="button"
+              >Add test Authors (JSON-file)</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'quoteapp:seed_quotes_mongo' %}" role="button"
+              >Add test Quotes (MongoDB)</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'quoteapp:seed_authors_mongo' %}" role="button"
+              >Add test Authors (MongoDB)</a
+            >
+          </li>
         </ul>
         {% endif %}
       </nav>
 
-      {% for quote in quotes %}
-      <ul>
-        <li>
-          <p>{{ quote.quote }}</p>
-          <p>
-            by <b>{{quote.author}}</b>
-            <a
-              href="{% url 'quoteapp:detail' quote.author.fullname %}"
-              >(about)</a
-            >
-          </p>
-          <p>Tags: <small> {{ quote.tags|tags }} </small></p>
-        </li>
-      </ul>
-      {% endfor %}
+      <div class="grid">
+        <div style="width: 150%;">
+          {% for quote in quotes %}
+          <ul>
+            <li>
+              <p>{{ quote.quote }}</p>
+              <p>
+                by <b>{{quote.author}}</b>
+                <a href="{% url 'quoteapp:detail' quote.author.fullname %}"
+                  >(about)</a
+                >
+              </p>
+              <p>
+                Tags:
+                <small>
+                  {% for tag in quote.tags|tags %}
+                  <a href="{% url 'quoteapp:find_quotes_by_tag' tag.name %}">
+                    {{ tag.name }}</a
+                  >, {% endfor %}
+                </small>
+              </p>
+            </li>
+          </ul>
+          {% endfor %}
+        </div>
+        <div style="padding-left: 50%;">
+          <h2>Top Ten Tags:</h2>
+          <ul>
+            {% for tag in most_common_tags %}
+            <li>
+              <a href="{% url 'quoteapp:find_quotes_by_tag' tag.name %}">
+                {{ tag.name }}</a
+              >
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
     </main>
   </body>
 </html>

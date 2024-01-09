@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .forms import TagForm, QuoteForm, AuthorForm
-from .models import Tag, Quote, Author
 import collections
+
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.shortcuts import get_object_or_404, redirect, render
+
+from .forms import AuthorForm, QuoteForm, TagForm
+from .models import Author, Quote, Tag
 
 
 # Create your views here.

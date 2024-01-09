@@ -1,5 +1,7 @@
-from django.forms import ModelForm, ModelChoiceField, CharField, Textarea, DateField, TextInput, DateInput
-from .models import Tag, Quote, Author
+from django.forms import (CharField, DateField, DateInput, ModelChoiceField,
+                          ModelForm, Textarea, TextInput)
+
+from .models import Author, Quote, Tag
 
 
 class TagForm(ModelForm):

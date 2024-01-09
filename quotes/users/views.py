@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
+from django.shortcuts import redirect, render
 
 # Create your views here.
-from .forms import RegisterForm, LoginForm, ProfileForm
+from .forms import LoginForm, ProfileForm, RegisterForm
 
 
 def signupuser(request):

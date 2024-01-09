@@ -1,9 +1,8 @@
 {% extends "quoteapp/base.html" %} {% load extract_tags %}
 
 {% block content %}
-
-{% for quote in quotes %}
 <h3>Viewing tag: <a href="{% url 'quoteapp:find_quotes_by_tag' viewing_tag.name %}"> {{ viewing_tag.name}}</a></h3>
+{% for quote in quotes %}
 <ul>
     <li>
         <p>{{ quote.quote }}</p>

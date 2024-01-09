@@ -1,20 +1,14 @@
-# from pathlib import Path
-# import json
-from django.shortcuts import render, redirect, get_object_or_404
-from django.db import IntegrityError
-from datetime import datetime
-
-from .models import Quote, Author, Tag
-# from .forms import Quote, AuthorForm, Tag
-
-from mongoengine import NotUniqueError
-
 import configparser
 import pathlib
+from datetime import datetime
 
 from bson import json_util
+from django.db import IntegrityError
+from django.shortcuts import get_object_or_404, redirect, render
 from mongoengine import (CASCADE, BooleanField, Document, ListField,
                          ReferenceField, StringField, connect)
+
+from .models import Author, Quote, Tag
 
 file_config = (
     pathlib.Path(__file__).parent.parent.parent.joinpath("configs").joinpath("config.ini")

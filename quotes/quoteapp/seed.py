@@ -1,12 +1,12 @@
-from pathlib import Path
 import json
-from django.shortcuts import render, redirect, get_object_or_404
-from django.db import IntegrityError
 from datetime import datetime
+from pathlib import Path
 
-from .models import Quote, Author, Tag
-from .forms import Quote, AuthorForm, Tag
+from django.db import IntegrityError
+from django.shortcuts import get_object_or_404, redirect, render
 
+from .forms import AuthorForm, Quote, Tag
+from .models import Author, Quote, Tag
 
 path_data = Path(__file__).parent.parent.parent.joinpath('data')
 

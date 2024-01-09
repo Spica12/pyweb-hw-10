@@ -1,7 +1,6 @@
 from django.urls import path
-from . import views
-from . import seed
-from . import seed_mongo
+
+from . import seed, seed_mongo, views
 
 app_name = 'quoteapp'
 
